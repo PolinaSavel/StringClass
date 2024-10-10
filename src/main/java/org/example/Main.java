@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String text = scanner.nextLine();
+        //Scanner scanner = new Scanner(System.in);
+        //String text = scanner.nextLine();
 
+        String text = "masha, Sasha, Glasha, MaSHa, Masha, glaShA";
         text = text.toLowerCase().strip().replace(",", "");
         String[] words = text.split(" ");
         String[] wordsUnikums = new String[words.length];
@@ -14,15 +15,33 @@ public class Main {
         for (String word : words) {
             System.out.println(word);
         }
+        System.out.println(" ");
 
-        for (int i = 0; i < words.length - 1; i++) {
-            for (int j = i; j < words.length - 1; j++) {
-                if (!words[i].equals(words[j + 1])) {
-                    wordsUnikums[j] = words[i];
-                } else {
-                    wordsUnikums[j] = null;
+        int counter = 0;
+
+        for (int i = 0; i < words.length-1; i++) {
+            boolean vstrecha= false;
+
+            //for (String x : wordsUnikums) {
+              //  String word = words[i];
+
+            for (int j = 0; j < words.length-1; j++) {
+                if (words[i].equals(wordsUnikums[j])){
+           // } if (word.equals(x)) {
+                    vstrecha = true;
+                    break;
                 }
             }
+
+            if (!vstrecha){
+                wordsUnikums[counter] = words[i];
+                counter = counter +1;
+            }
+
+        }
+
+        for (String x : wordsUnikums) {
+            System.out.println(x);
         }
 
         String strokaItogovaya = String.join(" ", wordsUnikums);
